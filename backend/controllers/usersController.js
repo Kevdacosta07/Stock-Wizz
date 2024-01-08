@@ -2,12 +2,19 @@ const asyncHandler = require("express-async-handler")
 const UsersModel = require("../models/usersModel")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
+const Users = require("../models/usersModel");
+
+
+const getAllUsers = asyncHandler(async (req, res) => {
+    const users = await Users.find()
+    res.status(200).json(users)
+})
 
 // @desc    Register new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler( async(req, res) => {
-    const { first_name, last_name, email, password} = req.body
+    const { first_name, last_name, email, password, is_admin } = req.body
 
     if (!first_name || !last_name || !email || !password) {
         res.status(400)
@@ -16,6 +23,7 @@ const registerUser = asyncHandler( async(req, res) => {
 
     //Check if user exists
     const userExist = await UsersModel.findOne({email})
+
     if(userExist) {
         res.status(400)
         throw new Error("L'utilisateur existe déjà")
@@ -30,8 +38,10 @@ const registerUser = asyncHandler( async(req, res) => {
         first_name,
         last_name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        is_admin: false
     })
+
     if (user) {
         res.status(201).json({
             _id: user.id,
@@ -48,6 +58,8 @@ const registerUser = asyncHandler( async(req, res) => {
     res.json({message: "Inscription"})
 })
 
+
+
 // @desc    Authenticate a user
 // @route   POST /api/users/login
 // @access  Public
@@ -56,6 +68,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     //Check for user email
     const user = await UsersModel.findOne({email})
+
     //Check password
     if (user && (await bcrypt.compare(password, user.password))) {
         res.status(201).json({
@@ -66,9 +79,31 @@ const loginUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        res.status(400)
-        throw new Error("Email ou mot de passe incorrect")
+        res.status(400).json({message: "Mot de passe ou nom d'utilisateur erroné."})
     }
+})
+
+// @desc    Check a user
+// @route   POST /api/users/login
+// @access  Public
+const checkUser = asyncHandler(async (req, res) => {
+    const {email} = req.body
+
+    console.log(req.body)
+
+    //Check for user email
+    const user = await UsersModel.findOne({email})
+
+    if (user) {
+        res.status(200).json()
+        return true
+    }
+
+    else
+    {
+        res.status(400).json({message: "Utilisateur introuvable"})
+    }
+
 })
 
 // @desc    Get user data
@@ -94,5 +129,7 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
-    getUser
+    getUser,
+    checkUser,
+    getAllUsers
 }

@@ -1,0 +1,348 @@
+/*IMPORTS*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+*
+{
+    font-family: 'Raleway', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* SPEENER */
+
+.loadingSpinnerContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.0);
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loadingSpinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid;
+    border-color: #000 transparent #555 transparent;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* MAIN HEADER */
+
+.mainHeader
+{
+    padding: 10px;
+}
+
+.mainHeader > .logo
+{
+    font-size: 1.2em;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+/* HOME */
+
+.home
+{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+    background: linear-gradient(120deg, #EE1414, #FFC200);
+}
+
+.home > .HomeText
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home > .HomeText h1
+{
+    text-align: center;
+    font-size: 5em;
+    padding: 40px 0 0 0;
+    color: white;
+}
+
+.home > .HomeText > .text
+{
+    width: 70%;
+}
+
+.home > .HomeText > .text > p
+{
+    text-align: center;
+    font-size: 1.3em;
+    padding: 20px 0;
+    color: white;
+}
+
+.home > form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.home form .input-box
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: 30px;
+    padding-left: 10px;
+}
+
+.home form .input-box input:focus
+{
+    outline: none;
+}
+
+.home form .input-box input
+{
+    border: none;
+    font-size: 1.1em;
+    padding-right: 30px;
+    font-weight: 600;
+}
+
+.home form .input-box .icon
+{
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+.home form .input-box button
+{
+    background: black;
+    color: white;
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    border: none;
+}
+
+.home form .input-box button:hover
+{
+    cursor: pointer ;
+}
+
+.home .card-container
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.home .card-container .card
+{
+    background-color: white;
+    width: 60%;
+    min-width: 300px;
+    height: 240px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home .divider {
+    width: 1px;
+    height: 40%;
+    background-color: black;
+    margin: 0 70px;
+}
+
+.home .card-container .card .text
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home .card-container .card .text h2
+{
+    font-size: 3em;
+    font-family: "Roboto", serif;
+    background: -webkit-linear-gradient(45deg, #ED4814, #DAB22D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.home .card-container .card .text p
+{
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+
+
+/* -------------- LOGIN PAGE -------------- */
+
+.login
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    background: linear-gradient(120deg, #ff4545, #FFC200);}
+
+.login .left
+{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login .left .logo
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.login .left .logo img
+{
+    width: 70%;
+}
+
+.login .left form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login .left .form-group
+{
+    margin: 10px 0;
+}
+
+.login .left .form-group input
+{
+    border: none;
+    padding: 10px 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+.login .left form button
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.login .left form button
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border: none;
+    background: black;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.login .left form button p, .login .left form button .signin
+{
+    color: white;
+}
+
+.login .left form button p
+{
+    color: white;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.login .right
+{
+    background-image: url("assets/Fullbear.jpeg");
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Admin HEADER */
+
+.adminHeader
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(120deg, #cc2929, #FFC200);
+    color: white;
+    text-decoration: none;
+}
+
+.adminHeader ul
+{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.adminHeader a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.adminHeader ul li
+{
+    margin: 10px;
+    font-weight: 600;
+}
+
+.adminHeader ul li a
+{
+    margin: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+}

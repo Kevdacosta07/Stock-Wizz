@@ -21,6 +21,11 @@ const usersSchema = mongoose.Schema({
     password: {
         type: String,
         required: [true, "Merci d'entrer un mote de passe"]
+    },
+
+    is_admin: {
+        type: Boolean,
+        required: [true, "Veuillez saisir le niveau de permission de l'utilisateur"]
     }
 }, {timestamps: true})
 
