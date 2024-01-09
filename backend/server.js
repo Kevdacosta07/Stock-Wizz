@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use("/api/users", require("./routes/usersRoutes"))
 app.use("/api/articles", require("./routes/articlesRoutes"))
+app.use("/api/products", require("./routes/productsRoutes"))
 
 app.use(cors())
 

@@ -58,7 +58,7 @@ const Login = () => {
 
     if (isLoading)
     {
-        return <Spinner />
+        return <Spinner/>
     }
 
     return (

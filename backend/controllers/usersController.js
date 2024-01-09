@@ -64,7 +64,9 @@ const registerUser = asyncHandler( async(req, res) => {
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password} = req.body
+    const {email, password} = req.body
+
+    console.log(req.body)
 
     //Check for user email
     const user = await UsersModel.findOne({email})

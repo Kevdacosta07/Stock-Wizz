@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import articlesService from "./articlesService";
 import {get} from "axios";
 import ArticlesService from "./articlesService";
 
@@ -17,7 +16,7 @@ export const getAllArticles = createAsyncThunk(
     async (_, thunkAPI) => {
         try
         {
-            return await articlesService.getAllArticles()
+            return await ArticlesService.getAllArticles()
         }
         catch (error)
         {

@@ -8,6 +8,9 @@ import ArticlesAdmin from "../../pages/articlesAdmin/ArticlesAdmin";
 import {useSelector} from "react-redux";
 import Admin from "../../pages/ADMIN/index/admin";
 import AdminHeader from "../adminHeader/AdminHeader";
+import Products from "../../pages/ADMIN/products/products";
+import Members from "../../pages/ADMIN/membres/members";
+import Rapports from "../../pages/ADMIN/rapports/rapports";
 
 function App() {
 
@@ -24,11 +27,10 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />}/>
                 {user && <Route path='/admin' element={<Admin />}/>}
-                {user &&
-                    <>
-                        <Route path='/adminArticles' element={<ArticlesAdmin />}/>
-                    </>
-                }
+                {user && <Route path='/produits' element={<Products />}/>}
+                {user && <Route path='/membres' element={<Members />}/>}
+                {user && <Route path='/rapports' element={<Rapports />}/>}
+                {user && <Route path='/adminArticles' element={<ArticlesAdmin />}/>}
             </Routes>
         </div>
       </Router>
