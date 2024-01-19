@@ -7,9 +7,10 @@ const productsSchema = mongoose.Schema({
         trim: true,
         minlength: [3, "Le nom de votre produit doit contenir 3 caractères"]
     },
-    initial_amount: {
-        type: Number,
-        required: [true, "Merci d'entrer un montant minimum"],
+    description: {
+        type: String,
+        required: [true, "Veuillez saisir une description"],
+        minlength: [20, "La description doit contenir au minimum 20 caractères"],
         trim: true
     }
 }, {timestamps: true})

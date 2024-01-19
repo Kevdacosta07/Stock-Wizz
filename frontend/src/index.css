@@ -7,6 +7,25 @@
     margin: 0;
 }
 
+/* VARS */
+.danger {
+    color: red;
+}
+
+.dangerLight {
+    color: #ff5e5e;
+}
+
+.warning {
+    color: #ffff32;
+}
+
+.warningLight {
+    color: #ffff7b;
+}
+
+
+
 /* SPEENER */
 
 .loadingSpinnerContainer {
@@ -354,7 +373,7 @@
 {
     display: flex;
     flex-direction: column;
-    margin: 3em 4em;
+    margin: 2.4em 4em;
 }
 
 .adminOverview .productsContainer .title
@@ -389,8 +408,94 @@
 {
     display: flex;
     flex-direction: row;
+    margin-top: 10px;
 }
 
+.adminOverview .productsContainer .card-container .card
+{
+    width: 280px;
+    height: 200px;
+    background: black;
+    border-radius: 10px;
+    margin-right: 30px;
+    position: relative;
+    transition: background-color 2s linear;
+}
+
+.adminOverview .productsContainer .card-container .card:hover
+{
+    background: linear-gradient(120deg, #ff4040, #FFC200);
+    transition: background-color 2s linear;
+}
+
+.adminOverview .productsContainer .card-container .card:hover .gear
+{
+    color: black;
+}
+
+.adminOverview .productsContainer .card-container .card:hover .trash
+{
+    color: black;
+}
+
+.adminOverview .productsContainer .card-container .card:hover .stocks .actuals
+{
+    color: black;
+}
+
+
+.adminOverview .productsContainer .card-container .card h2
+{
+    color: white;
+    margin: 20px;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.adminOverview .productsContainer .card-container .card .gear
+{
+    color: white;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    z-index: 20;
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+}
+
+.adminOverview .productsContainer .card-container .card .trash
+{
+    color: red;
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    z-index: 20;
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+}
+
+.adminOverview .productsContainer .card-container .card .stocks
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+    color: white;
+    font-weight: 300;
+    transition: color 300ms;
+}
+
+.adminOverview .productsContainer .card-container .card .stocks .actuals, .adminOverview .productsContainer .card-container .card .stocks .total
+{
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.adminOverview .productsContainer .card-container .card .stocks .actuals .number, .adminOverview .productsContainer .card-container .card .stocks .total .number
+{
+    font-weight: 900;
+    font-family: "Roboto", serif;
+    font-size: 1em;
+}
 
 
 /* Membres */
@@ -449,4 +554,160 @@
 {
     font-weight: 400;
     font-size: 1.8em;
+}
+
+.produits .productsContainer
+{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.produits .productsContainer .title
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.produits .productsContainer .title h2
+{
+    font-weight: 900;
+    font-size: 4em;
+}
+
+.produits .productsContainer .title a
+{
+    display: flex;
+    text-decoration: none;
+    margin-left: 1.3em;
+    font-size: 2em;
+    color: #214DE8;
+}
+
+.produits .productsContainer .title p
+{
+    margin-left: 10px;
+    font-weight: 800;
+}
+
+.produits .productsContainer .cards-container
+{
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.produits .productsContainer .cards-container .card
+{
+    width: 280px;
+    height: 200px;
+    background: black;
+    border-radius: 10px;
+    margin-right: 30px;
+    position: relative;
+    transition: background-color 2s linear;
+}
+
+.produits .productsContainer .cards-container .card:hover
+{
+    background: linear-gradient(120deg, #ff4040, #FFC200);
+    transition: background-color 2s linear;
+}
+
+.produits .productsContainer .cards-container .card:hover .gear
+{
+    color: black;
+}
+
+.produits .productsContainer .cards-container .card:hover .trash
+{
+    color: black;
+}
+
+.produits .productsContainer .cards-container .card:hover .stocks .actuals
+{
+    color: black;
+}
+
+
+.produits .productsContainer .cards-container .card h2
+{
+    color: white;
+    margin: 20px;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.produits .productsContainer .cards-container .card .gear
+{
+    color: white;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    z-index: 20;
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+}
+
+.produits .productsContainer .cards-container .card .trash
+{
+    color: red;
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    z-index: 20;
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+}
+
+.produits .productsContainer .cards-container .card .stocks
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+    color: white;
+    font-weight: 300;
+    transition: color 300ms;
+}
+
+.produits .productsContainer .cards-container .card .stocks .actuals, .produits .productsContainer .cards-container .card .stocks .total
+{
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.produits .productsContainer .cards-container .card .stocks .actuals .number, .produits .productsContainer .cards-container .card .stocks .total .number
+{
+    font-weight: 900;
+    font-family: "Roboto", serif;
+    font-size: 1em;
+}
+
+.produits .addproduct
+{
+    text-decoration: none;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.produits .addproduct .link
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: #ED4F18;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.produits .addproduct .icon
+{
+    margin-right: 10px;
 }

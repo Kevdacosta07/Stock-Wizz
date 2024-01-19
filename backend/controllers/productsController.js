@@ -12,36 +12,51 @@ const getAllProducts = asyncHandler(async (req, res) => {
 
 
 // @desc ADD Product
-// @route POST /api/products/all
+// @route POST /api/products/add
 // Access public
 const addProduct = asyncHandler(async (req, res) => {
-    if (!req.body.name || !req.body.initial_amount){
-        res.status(400).json({message: "Veuillez remplir tous les champs"})
+
+    const { name, description } = req.body;
+
+    if (!name || !description) {
+        res.status(400).json({ message: "Veuillez remplir tous les champs" });
+        return;  // Ajoutez cette ligne pour arrêter l'exécution si les champs ne sont pas valides.
     }
 
-    const product = await Products.create({
-        name: req.body.name,
-        initial_amount: req.body.initial_amount
-    })
+    const existingProduct = await Products.findOne({ name });
 
-    if (product) {
-        res.status(200).json(product)
+    if (existingProduct) {
+        res.status(400).json({ message: "Un produit avec le même nom existe déjà !" });
+        return;  // Ajoutez cette ligne pour arrêter l'exécution si le produit existe déjà.
     }
 
-    else {
-        res.status(400).json({message: "Erreur lors de la création de l'article, veuillez réessayer."})
+    if (initial_amount < 0) {
+        res.status(400).json({ message: "Votre stock initial doit être au minimum égal à 0 !" });
+        return;  // Ajoutez cette ligne pour arrêter l'exécution si le stock initial est invalide.
     }
-})
+
+    const newProduct = await Products.create({
+        name,
+        initial_amount,
+        description
+    });
+
+    if (newProduct) {
+        res.status(200).json(newProduct);
+    } else {
+        res.status(400).json({ message: "Erreur lors de la création de l'article, veuillez réessayer." });
+    }
+});
 
 // @desc Update product
 // @route PUT /api/products/edit/id
 // Access Private
 const updateProduct = asyncHandler(async (req, res) => {
-    const product = await Articles.findById(req.params.id)
+    const product = await Products.findById(req.params.id)
 
     if (!product) {
         res.status(400)
-        throw new Error("Article non trouvé.")
+        throw new Error("Produit non trouvé.")
     }
 
     if (!Users.findById(req.user.id).is_admin) {
@@ -54,6 +69,31 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.status(200).json(updatedArticle)
 })
 
+// @desc Update product
+// @route DELETE /api/products/delete:id
+// Access Private
+const deleteProduct = asyncHandler(async (req, res) => {
+    const product = await Products.findById(req.params.id)
+
+    if (!product) {
+        res.status(400)
+        throw new Error("Produit non trouvé.")
+    }
+
+    if (!req.user) {
+        res.status(400)
+        throw new Error("Utilisateur non trouvé.")
+    }
+
+    if (!req.user.is_admin) {
+        res.status(400)
+        throw new Error("Utilisateur non autorisé!")
+    }
+
+    await Products.findByIdAndRemove(req.params.id)
+    res.status(200).json({id: req.params.id})
+})
+
 
 
 
@@ -61,5 +101,6 @@ const updateProduct = asyncHandler(async (req, res) => {
 module.exports = {
     getAllProducts,
     addProduct,
-    updateProduct
+    updateProduct,
+    deleteProduct
 }

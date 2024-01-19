@@ -5,6 +5,7 @@ import {FaPlus} from "react-icons/fa";
 import {getAllProducts} from "../../../features/products/productSlice";
 import {reset} from "../../../features/auth/authSlice";
 import {toast} from "react-toastify";
+import ProductItem from "../../../components/productItem/ProductItem";
 
 const Admin = () => {
 
@@ -12,15 +13,26 @@ const Admin = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.auth)
-    const {products, isLoading, isSuccess, isError} = useSelector((state) => state.products)
+    const {products, isLoading, isSuccess, message, isError, isDeletedProduct} = useSelector((state) => state.products)
 
     useEffect(() => {
         dispatch(getAllProducts())
-    }, [])
+    }, [isDeletedProduct])
 
     useEffect(() => {
+
+        if (isError)
+        {
+            toast.error(message)
+        }
+
+        if (isDeletedProduct)
+        {
+            toast.success("Votre produit a été supprimé avec succès!")
+        }
+
         dispatch(reset())
-    }, [isLoading, isError, isSuccess])
+    }, [isLoading, isError, isSuccess, message, isDeletedProduct])
 
     return (
         <>
@@ -28,13 +40,12 @@ const Admin = () => {
                 <div className="productsContainer">
                     <div className="title">
                         <h2>Vos stocks</h2>
-                        {user && <Link className="productLink" to="/addProduct"><FaPlus/><p>Ajouter un produit</p></Link>}
+                        {user && <Link className="productLink" to="/produits/add"><FaPlus/><p>Ajouter un produit</p></Link>}
                     </div>
-
                     <div className="card-container">
-                        {products.map((product) => {
-                            return <p>{product.name}</p>
-                        })}
+                        {products.length > 0 ? (products.map((product, index) => {
+                            return <ProductItem key={index} product={product} />
+                        })) : (<p className="noProduct">Aucun produit..</p>)}
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import AdminHeader from "../adminHeader/AdminHeader";
 import Products from "../../pages/ADMIN/products/products";
 import Members from "../../pages/ADMIN/membres/members";
 import Rapports from "../../pages/ADMIN/rapports/rapports";
+import Addproduct from "../../pages/ADMIN/products/addproduct";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/login' element={<Login />}/>
                 {user && <Route path='/admin' element={<Admin />}/>}
                 {user && <Route path='/produits' element={<Products />}/>}
+                {user && <Route path='/produits/add' element={<Addproduct />}/>}
                 {user && <Route path='/membres' element={<Members />}/>}
                 {user && <Route path='/rapports' element={<Rapports />}/>}
                 {user && <Route path='/adminArticles' element={<ArticlesAdmin />}/>}
