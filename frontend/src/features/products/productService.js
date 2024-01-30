@@ -9,6 +9,11 @@ const getAllProducts = async () => {
     return response.data
 }
 
+const getSpecificProduct = async (productId) => {
+    const response = await axios.get(API_URL + "product/" + productId)
+    return response.data
+}
+
 const addProduct = async (productData, token) => {
     const config = {
         headers: {
@@ -28,8 +33,6 @@ const deleteProducts = async (productId, token) => {
         }
     }
 
-    console.log(productId)
-
     const response = await axios.delete(API_URL + "delete/" + productId, config)
     return response.data
 }
@@ -37,7 +40,8 @@ const deleteProducts = async (productId, token) => {
 const productService = {
     getAllProducts,
     deleteProducts,
-    addProduct
+    addProduct,
+    getSpecificProduct
 }
 
 export default productService

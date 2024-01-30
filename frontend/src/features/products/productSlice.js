@@ -5,6 +5,7 @@ import productService from "./productService";
 
 const initialState = {
     products : [],
+    product: [],
     isSuccess: false,
     isError: false,
     isLoading: false,
@@ -18,6 +19,23 @@ export const getAllProducts = createAsyncThunk(
         try
         {
             return await ProductService.getAllProducts()
+        }
+
+        catch (error)
+        {
+            const message = (error.response && error.response.data && error.response.data.message) ||
+                error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const getSpecificProduct = createAsyncThunk(
+    'products/product',
+    async (id, thunkAPI) => {
+        try
+        {
+            return await ProductService.getSpecificProduct(id)
         }
 
         catch (error)
@@ -60,15 +78,16 @@ export const deleteProduct = createAsyncThunk(
 )
 
 export const productSlice = createSlice({
-    name: "auth",
+    name: "products",
     initialState,
     reducers: {
-        reset: (state) => {
+        resetProducts: (state) => {
             state.isLoading = false
             state.isSuccess = false
             state.isError = false
             state.isDeletedProduct = false
             state.message = ''
+            state.product = {}
         }
     },
 
@@ -85,6 +104,22 @@ export const productSlice = createSlice({
             })
 
             .addCase(getAllProducts.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+
+            .addCase(getSpecificProduct.pending, (state) => {
+                state.isLoading = true
+            })
+
+            .addCase(getSpecificProduct.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.product = action.payload
+            })
+
+            .addCase(getSpecificProduct.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
@@ -122,5 +157,5 @@ export const productSlice = createSlice({
     }
 })
 
-export const {reset} = productSlice.actions
+export const {resetProducts} = productSlice.actions
 export default productSlice.reducer

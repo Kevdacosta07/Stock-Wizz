@@ -16,9 +16,11 @@ const getAllOptions = asyncHandler(async (req, res) => {
 // Access public
 const getProductOptions = asyncHandler(async (req, res) => {
 
-    const { product_id } = req.body;
+    const id = req.params.id;
 
-    const productOptions = await Options.find({product_id})
+    const productOptions = await Options.find({product_id: id})
+
+    console.log(productOptions)
 
     res.status(200).json(productOptions)
 })
@@ -28,9 +30,11 @@ const getProductOptions = asyncHandler(async (req, res) => {
 // @route POST /api/options/add
 // Access public
 const addOption = asyncHandler(async (req, res) => {
-    const { product_id, pack_amount, amount } = req.body;
+    const { product_id, pack_amount, amount, initial_amount } = req.body;
 
-    if (!product_id || !pack_amount || !amount) {
+    console.log(initial_amount)
+
+    if (!product_id || !pack_amount || !amount || !initial_amount) {
         res.status(400).json({ message: "Veuillez remplir tous les champs" });
         return;  // Ajoutez cette ligne pour arrêter l'exécution si les champs ne sont pas valides.
     }
@@ -38,19 +42,20 @@ const addOption = asyncHandler(async (req, res) => {
     const existingPackAmount = await Options.findOne({ pack_amount });
 
     if (existingPackAmount) {
-        res.status(400).json({ message: "Un produit avec le même nombre de pack existe déjà !" });
+        res.status(400).json({ message: "Une option avec le même nombre d'unité existe déjà !" });
         return;  // Ajoutez cette ligne pour arrêter l'exécution si le produit existe déjà.
     }
 
-    if (amount < 0) {
+    if (initial_amount < 0) {
         res.status(400).json({ message: "Votre stock initial doit être au minimum égal à 0 !" });
         return;  // Ajoutez cette ligne pour arrêter l'exécution si le stock initial est invalide.
     }
 
-    const newOption = await Products.create({
+    const newOption = await Options.create({
         product_id,
         pack_amount,
-        amount
+        amount,
+        initial_amount
     });
 
     if (newOption) {

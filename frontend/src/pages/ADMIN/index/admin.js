@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {FaPlus} from "react-icons/fa";
-import {getAllProducts} from "../../../features/products/productSlice";
+import {getAllProducts, resetProducts} from "../../../features/products/productSlice";
 import {reset} from "../../../features/auth/authSlice";
 import {toast} from "react-toastify";
 import ProductItem from "../../../components/productItem/ProductItem";
@@ -32,6 +32,7 @@ const Admin = () => {
         }
 
         dispatch(reset())
+        dispatch(resetProducts())
     }, [isLoading, isError, isSuccess, message, isDeletedProduct])
 
     return (

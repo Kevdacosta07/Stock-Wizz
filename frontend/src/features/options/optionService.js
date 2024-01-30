@@ -9,8 +9,8 @@ const getAllOptions = async () => {
     return response.data
 }
 
-const getProductOption = async (productId) => {
-    const response = await axios.get(API_URL + "productOption/" + productId)
+const getProductOptions = async (productId) => {
+    const response = await axios.get(API_URL + "product/" + productId)
     return response.data
 }
 
@@ -40,7 +40,8 @@ const deleteOption = async (optionId, token) => {
 const optionService = {
     getAllOptions,
     deleteOption,
-    addOption
+    addOption,
+    getProductOptions
 }
 
 export default optionService

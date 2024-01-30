@@ -2,9 +2,8 @@ import React, {useEffect} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Spinner from "../../../components/spinner/Spinner";
-import {getAllProducts} from "../../../features/products/productSlice";
+import {getAllProducts, resetProducts} from "../../../features/products/productSlice";
 import ProductItem from "../../../components/productItem/ProductItem";
-import {reset} from "../../../features/auth/authSlice";
 import {FaPlus} from "react-icons/fa";
 import {toast} from "react-toastify";
 
@@ -12,7 +11,6 @@ const Products = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {user} = useSelector((state) => state.auth)
     const {products, isLoading, message, isSuccess, isError, isDeletedProduct} = useSelector((state) => state.products)
 
     useEffect(() => {
@@ -31,7 +29,7 @@ const Products = () => {
             toast.error(message)
         }
 
-        dispatch(reset())
+        dispatch(resetProducts())
     }, [isLoading, isSuccess, isError, message, isDeletedProduct]);
 
     return (

@@ -11,9 +11,14 @@ const optionsSchema = mongoose.Schema({
         required: [true, "Veuillez saisir un montant de pack"],
         trim: true
     },
+    initial_amount: {
+        type: Number,
+        required: [true, "Veuillez saisir le montant initial"],
+        trim: true
+    },
     amount: {
         type: Number,
-        required: [true, "Veuillez saisir un montant initial"],
+        required: [true, "Veuillez saisir le montant actuel"],
         trim: true
     }
 }, {timestamps: true})

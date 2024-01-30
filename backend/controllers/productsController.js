@@ -11,6 +11,20 @@ const getAllProducts = asyncHandler(async (req, res) => {
 })
 
 
+const getSpecificProduct = asyncHandler(async (req, res) => {
+
+    const id = req.params.id
+
+    const product = await Products.findById({_id: id})
+
+    if (!product)
+    {
+        return res.status(400).json({message: "Produit non trouvé : " + id})
+    }
+
+    res.status(200).json(product)
+})
+
 // @desc ADD Product
 // @route POST /api/products/add
 // Access public
@@ -30,14 +44,8 @@ const addProduct = asyncHandler(async (req, res) => {
         return;  // Ajoutez cette ligne pour arrêter l'exécution si le produit existe déjà.
     }
 
-    if (initial_amount < 0) {
-        res.status(400).json({ message: "Votre stock initial doit être au minimum égal à 0 !" });
-        return;  // Ajoutez cette ligne pour arrêter l'exécution si le stock initial est invalide.
-    }
-
     const newProduct = await Products.create({
         name,
-        initial_amount,
         description
     });
 
@@ -102,5 +110,6 @@ module.exports = {
     getAllProducts,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getSpecificProduct
 }

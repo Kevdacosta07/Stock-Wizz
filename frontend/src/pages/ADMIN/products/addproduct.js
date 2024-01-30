@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, reset} from "../../../features/products/productSlice";
+import {addProduct, resetProducts} from "../../../features/products/productSlice";
 import {toast} from "react-toastify";
 
 const Addproduct = () => {
@@ -39,7 +39,7 @@ const Addproduct = () => {
             }
         }
 
-        dispatch(reset())
+        dispatch(resetProducts())
 
     }, [isError, isSuccess, isLoading, dispatch, navigate, message]);
 
@@ -50,7 +50,7 @@ const Addproduct = () => {
 
         const productData = {
             name : name.toLowerCase(),
-            description,
+            description: description
         }
 
         dispatch(addProduct(productData))

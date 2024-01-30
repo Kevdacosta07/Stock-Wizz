@@ -12,6 +12,8 @@ import Products from "../../pages/ADMIN/products/products";
 import Members from "../../pages/ADMIN/membres/members";
 import Rapports from "../../pages/ADMIN/rapports/rapports";
 import Addproduct from "../../pages/ADMIN/products/addproduct";
+import SpecificProduct from "../../pages/ADMIN/products/specificProduct";
+import AddOption from "../../pages/ADMIN/options/addOption";
 
 function App() {
 
@@ -29,9 +31,11 @@ function App() {
                 <Route path='/login' element={<Login />}/>
                 {user && <Route path='/admin' element={<Admin />}/>}
                 {user && <Route path='/produits' element={<Products />}/>}
+                {user && <Route path='/produit/:id' element={<SpecificProduct />}/>}
                 {user && <Route path='/produits/add' element={<Addproduct />}/>}
                 {user && <Route path='/membres' element={<Members />}/>}
                 {user && <Route path='/rapports' element={<Rapports />}/>}
+                {user && <Route path='/options/add/:id' element={<AddOption />}/>}
                 {user && <Route path='/adminArticles' element={<ArticlesAdmin />}/>}
             </Routes>
         </div>
