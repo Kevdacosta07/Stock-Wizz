@@ -3,7 +3,7 @@
 ## Prérequis
 
 - Lien d'installation [NODE](https://nodejs.org/en/download)
-- Lien d'installation GIT : https://git-scm.com/downloads
+- Lien d'installation [GIT](https://git-scm.com/downloads)
 
 ### Assurez-vous d'avoir les éléments suivants installés sur votre système
     Node.js (vérifiez avec "node -v")
