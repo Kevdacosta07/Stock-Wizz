@@ -1,0 +1,113 @@
+/* TABLET */
+
+@media screen and (max-width: 768px) {
+
+  /* HOME */
+  .home
+  {
+    .card-container
+    {
+      padding: 10px;
+
+      .card
+      {
+
+        padding: 50px 0;
+        width: 80%;
+        height: 50%;
+
+        .text
+        {
+          margin: 0 20px;
+          h2
+          {
+            font-size: 2em;
+          }
+
+          p
+          {
+            font-size: 1.5em;
+          }
+        }
+
+        .divider
+        {
+          display: none;
+        }
+      }
+    }
+  }
+
+  /* Login page */
+  .login
+  {
+    .right
+    {
+      display: none;
+    }
+  }
+
+  /* Admin index */
+  .adminOverview
+  {
+    .productsContainer
+    {
+      .title
+      {
+        h2
+        {
+          font-size: 2.8em;
+        }
+
+        .productLink
+        {
+          font-size: 1.8em;
+        }
+      }
+
+      .card-container
+      {
+        .card
+        {
+          height: 150px;
+          width: 230px;
+
+          h2
+          {
+            font-size: 1em;
+            margin: 20px 10px 10px 20px;
+          }
+
+          .settings
+          {
+            .icon
+            {
+              font-size: 0.9em;
+            }
+          }
+
+          .stocks
+          {
+            .actuals, .total
+            {
+              p
+              {
+                font-size: 0.8em;
+              }
+
+              .number
+              {
+                font-size: 0.7em;
+              }
+            }
+          }
+        }
+      }
+
+      .transactionContainer
+      {
+
+      }
+    }
+  }
+}

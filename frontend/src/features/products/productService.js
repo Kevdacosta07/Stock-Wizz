@@ -37,11 +37,23 @@ const deleteProducts = async (productId, token) => {
     return response.data
 }
 
+const updateProduct = async (id, productData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_URL + 'edit/'+id, productData, config)
+
+    return response.data
+}
+
 const productService = {
     getAllProducts,
     deleteProducts,
     addProduct,
-    getSpecificProduct
+    getSpecificProduct,
+    updateProduct
 }
 
 export default productService

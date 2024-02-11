@@ -14,8 +14,7 @@ const AddOption = () => {
     const { pack_amount, amount } = formData
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {isError, isSuccess, isLoading, message} = useSelector((state) => state.options)
-
+    const {isError, isCreatedOption, isLoading, message} = useSelector((state) => state.options)
     const {id} = useParams();
 
     const onChange = (e) => {
@@ -35,7 +34,7 @@ const AddOption = () => {
             toast.error(message)
         }
 
-        if (isSuccess)
+        if (isCreatedOption)
         {
             if (!isLoading)
             {
@@ -46,7 +45,7 @@ const AddOption = () => {
 
         dispatch(optionReset())
 
-    }, [isError, isSuccess, isLoading, dispatch, navigate, message]);
+    }, [isError, isCreatedOption, isLoading, dispatch, navigate, message]);
 
     const onSubmit = (e) =>
     {

@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import ProductService from "./productService";
 import {get} from "axios";
 import productService from "./productService";
+import authService from "../auth/authService";
 
 const initialState = {
     products : [],
@@ -10,6 +11,8 @@ const initialState = {
     isError: false,
     isLoading: false,
     isDeletedProduct: false,
+    isCreatedProduct: false,
+    isEditedProduct: false,
     message: ''
 }
 
@@ -77,6 +80,23 @@ export const deleteProduct = createAsyncThunk(
     }
 )
 
+export const updateProduct = createAsyncThunk(
+    'auth/edit',
+    async (payload, thunkAPI) => {
+        const { id, product } = payload
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await productService.updateProduct(id, product, token)
+        }
+        catch (error)
+        {
+            const message = (error.response && error.response.data && error.response.data.message) ||
+                error.message || error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 export const productSlice = createSlice({
     name: "products",
     initialState,
@@ -86,6 +106,8 @@ export const productSlice = createSlice({
             state.isSuccess = false
             state.isError = false
             state.isDeletedProduct = false
+            state.isCreatedProduct = false
+            state.isEditedProduct = false
             state.message = ''
             state.product = {}
         }
@@ -140,13 +162,28 @@ export const productSlice = createSlice({
                 state.message = action.payload
             })
 
+            .addCase(updateProduct.pending, (state) => {
+                state.isLoading = true
+            })
+
+            .addCase(updateProduct.fulfilled, (state) => {
+                state.isLoading = false
+                state.isEditedProduct = true
+            })
+
+            .addCase(updateProduct.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+
             .addCase(addProduct.pending, (state) => {
                 state.isLoading = true
             })
 
             .addCase(addProduct.fulfilled, (state) => {
                 state.isLoading = false
-                state.isSuccess = true
+                state.isCreatedProduct = true
             })
 
             .addCase(addProduct.rejected, (state, action) => {

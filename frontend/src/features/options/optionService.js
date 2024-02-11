@@ -9,6 +9,11 @@ const getAllOptions = async () => {
     return response.data
 }
 
+const getSpecificOption = async (optionId) => {
+    const response = await axios.get(API_URL + "option/" + optionId)
+    return response.data
+}
+
 const getProductOptions = async (productId) => {
     const response = await axios.get(API_URL + "product/" + productId)
     return response.data
@@ -37,11 +42,36 @@ const deleteOption = async (optionId, token) => {
     return response.data
 }
 
+const updateOption = async (id, optionData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_URL + 'edit/'+ id, optionData, config)
+
+    return response.data
+}
+
+const updateAmountOption = async (id, optionData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_URL + 'editAmount/'+ id, optionData, config)
+
+    return response.data
+}
+
 const optionService = {
     getAllOptions,
     deleteOption,
     addOption,
-    getProductOptions
+    getProductOptions,
+    getSpecificOption,
+    updateOption,
+    updateAmountOption
 }
 
 export default optionService

@@ -1,7 +1,7 @@
 import React from 'react';
 import {FaGear} from "react-icons/fa6";
-import {FaTrash} from "react-icons/fa";
-import {useDispatch} from "react-redux";
+import {FaArrowDown, FaArrowUp, FaPen, FaTrash} from "react-icons/fa";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteProduct} from "../../features/products/productSlice";
 import {useNavigate} from "react-router-dom";
 import {deleteOption} from "../../features/options/optionSlice";
@@ -11,23 +11,32 @@ const OptionItem = ({ option }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    console.log(option)
+    const {user} = useSelector((state) => state.auth)
+
+    const formatNumberWithApostrophe = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+    };
 
     return (
         <>
            <div className="card">
                <h2>{option.pack_amount === 1 ? ("Unité") : ("Pack de " + option.pack_amount)}</h2>
-               <FaGear onClick={() => navigate("/produit/"+option._id)} className="gear"/>
-               <FaTrash onClick={() => dispatch(deleteOption(option._id))} className="trash"/>
+               <div className="settings">
+                   {user.is_admin && <FaTrash onClick={() => dispatch(deleteOption(option._id))} className="trash icon"/>}
+                   {user.is_admin && <FaPen onClick={() => navigate("/options/edit/"+option._id)} className="gear icon"/>}
+                   <FaArrowDown onClick={() => navigate("/options/stockremove/"+option._id)} className="down icon"/>
+                   <FaArrowUp onClick={() => navigate("/options/stockadd/"+option._id)} className="up icon"/>
+               </div>
 
                <div className="stocks">
                    <div className="actuals">
                        <p>Stock actuel</p>
-                       <p className="number">{option.amount}</p>
+                       <p className="number">{formatNumberWithApostrophe(option.amount)}</p>
                    </div>
+
                    <div className="total">
                        <p>Stock initial</p>
-                       <p className="number">{option.initial_amount}</p>
+                       <p className="number">{formatNumberWithApostrophe(option.initial_amount)}</p>
                    </div>
                </div>
            </div>

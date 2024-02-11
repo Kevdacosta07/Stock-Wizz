@@ -1,0 +1,54 @@
+/* TABLET */
+@media screen and (max-width: 768px) {
+  /* HOME */
+  .home .card-container {
+    padding: 10px;
+  }
+  .home .card-container .card {
+    padding: 50px 0;
+    width: 80%;
+    height: 50%;
+  }
+  .home .card-container .card .text {
+    margin: 0 20px;
+  }
+  .home .card-container .card .text h2 {
+    font-size: 2em;
+  }
+  .home .card-container .card .text p {
+    font-size: 1.5em;
+  }
+  .home .card-container .card .divider {
+    display: none;
+  }
+  /* Login page */
+  .login .right {
+    display: none;
+  }
+  /* Admin index */
+  .adminOverview .productsContainer .title h2 {
+    font-size: 2.8em;
+  }
+  .adminOverview .productsContainer .title .productLink {
+    font-size: 1.8em;
+  }
+  .adminOverview .productsContainer .card-container .card {
+    height: 150px;
+    width: 230px;
+  }
+  .adminOverview .productsContainer .card-container .card h2 {
+    font-size: 1em;
+    margin: 20px 10px 10px 20px;
+  }
+  .adminOverview .productsContainer .card-container .card .settings .icon {
+    font-size: 0.9em;
+  }
+  .adminOverview .productsContainer .card-container .card .stocks .actuals p, .adminOverview .productsContainer .card-container .card .stocks .total p {
+    font-size: 0.8em;
+  }
+  .adminOverview .productsContainer .card-container .card .stocks .actuals .number, .adminOverview .productsContainer .card-container .card .stocks .total .number {
+    font-size: 0.7em;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */

@@ -12,6 +12,10 @@ const productsSchema = mongoose.Schema({
         required: [true, "Veuillez saisir une description"],
         minlength: [20, "La description doit contenir au minimum 20 caractères"],
         trim: true
+    },
+    productImage: {
+        type: String,
+        required: [true, "Veuillez joindre une image"]
     }
 }, {timestamps: true})
 

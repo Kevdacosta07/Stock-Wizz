@@ -9,13 +9,14 @@ const Addproduct = () => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        initial_amount: 0
+        initial_amount: 0,
+        productImage: null
     })
 
-    const { name, description } = formData
+    const { name, description, productImage } = formData
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {isError, isSuccess, isLoading, message} = useSelector((state) => state.products)
+    const {isError, isCreatedProduct, isLoading, message} = useSelector((state) => state.products)
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -24,13 +25,22 @@ const Addproduct = () => {
         }))
     }
 
+    const onImageChange = (e) => {
+        const imageFile = e.target.files[0];
+
+        setFormData({
+            ...formData,
+            productImage: imageFile,
+        });
+    };
+
     useEffect(() => {
 
         if (isError) {
             toast.error(message)
         }
 
-        if (isSuccess)
+        if (isCreatedProduct)
         {
             if (!isLoading)
             {
@@ -41,19 +51,18 @@ const Addproduct = () => {
 
         dispatch(resetProducts())
 
-    }, [isError, isSuccess, isLoading, dispatch, navigate, message]);
+    }, [isError, isCreatedProduct, isLoading, dispatch, navigate, message]);
 
     const onSubmit = (e) =>
     {
-        // On empêche la page de se recharger
         e.preventDefault()
 
-        const productData = {
-            name : name.toLowerCase(),
-            description: description
-        }
+        const formDataWithImage = new FormData();
+        formDataWithImage.append('name', name.toLowerCase());
+        formDataWithImage.append('description', description);
+        formDataWithImage.append('productImage', productImage);
 
-        dispatch(addProduct(productData))
+        dispatch(addProduct(formDataWithImage))
     }
 
     return (
@@ -71,6 +80,14 @@ const Addproduct = () => {
                     <label htmlFor="description">Description du produit</label>
                     <textarea id="description" name="description" onChange={onChange} value={description}/>
                 </div>
+
+                <input
+                    type="file"
+                    name="productImage"
+                    id="productImage"
+                    accept="image/*"
+                    onChange={onImageChange}
+                />
 
                 <button type="submit">Ajouter le produit</button>
             </form>

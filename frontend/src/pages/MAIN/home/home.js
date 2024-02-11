@@ -7,6 +7,7 @@ import Spinner from "../../../components/spinner/Spinner";
 import {FaEnvelope} from "react-icons/fa";
 import Header from "../../../components/header/header";
 import {userExist} from "../../../features/auth/authSlice";
+import {getAllProducts} from "../../../features/products/productSlice";
 
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {isLoading, checkUser, isError, message, users, user} = useSelector((state) => state.auth)
+    const {products} = useSelector((state) => state.products)
 
     useEffect(() => {
 
@@ -42,6 +44,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getAllUsers())
+        dispatch(getAllProducts)
     }, [])
 
     const onChange = (e) => {
@@ -107,7 +110,7 @@ const Home = () => {
                         <div className="divider"></div>
 
                         <div className="text">
-                            <h2 className="title">230</h2>
+                            <h2 className="title">{products.length}</h2>
                             <p className="text">Produits</p>
                         </div>
                     </div>
