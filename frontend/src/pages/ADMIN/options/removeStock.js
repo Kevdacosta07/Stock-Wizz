@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 import {getSpecificProduct} from "../../../features/products/productSlice";
 import {addTransaction, resetTransactions} from "../../../features/transactions/transactionSlice";
 
-const AddStock = () => {
+const RemoveStock = () => {
 
     const [formData, setFormData] = useState({
         amount: 0
@@ -75,17 +75,8 @@ const AddStock = () => {
 
         if (finalamount < 0)
         {
-            if (finalamount > 1)
-            {
-                toast.error(option.amount + " restants, vous ne pouvez pas en retirer plus.")
-                return
-            }
-
-            else
-            {
-                toast.error(option.amount + " restant, vous ne pouvez pas en retirer plus.")
-                return
-            }
+            toast.error(option.amount + "restant, vous ne pouvez pas en retirer plus")
+            return
         }
 
         const optionData = {
@@ -127,4 +118,4 @@ const AddStock = () => {
     );
 };
 
-export default AddStock;
+export default RemoveStock;
