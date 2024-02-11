@@ -2,8 +2,8 @@
 
 ## Prérequis
 
-Lien d'installation [NODE](https://nodejs.org/en/download)
-Lien d'installation GIT : https://git-scm.com/downloads
+- Lien d'installation [NODE](https://nodejs.org/en/download)
+- Lien d'installation GIT : https://git-scm.com/downloads
 
 ### Assurez-vous d'avoir les éléments suivants installés sur votre système :
     Node.js (vérifiez avec "node -v")
@@ -13,20 +13,20 @@ Lien d'installation GIT : https://git-scm.com/downloads
 
 ## Étapes d'installation
 ### Clonez le dépôt :
-- git clone https://github.com/Kevdacosta07/Stock-Wizz.git
+    git clone https://github.com/Kevdacosta07/Stock-Wizz.git
 
 ### Accédez au répertoire du projet :
-- cd Stock-Wizz
+    cd Stock-Wizz
 
 
 ### Installation des dépendances côté backend :
-1. cd backend 
-2. npm install
+    cd backend 
+    npm install
 
 
 ### Installation des dépendances côté frontend :
-1. cd ..\frontend\
-2. npm install
+    cd ..\frontend\
+    npm install
 
 
 ## Configuration du serveur :
@@ -35,15 +35,15 @@ Lien d'installation GIT : https://git-scm.com/downloads
 
 ## Lancement de l'application
 ### Revenez au répertoire dans le dossier backend :
-- cd ..\backend\
+    cd ..\backend\
 
 ### Lancez le serveur Node.js :
-- npm run server
+    npm run server
 
 
 ### Lancez l'application client (dans un autre terminal) :
-1. cd ..\frontend\
-2. npm run start
+    cd ..\frontend\
+    npm run start
 
 
-## L'application devrait maintenant être accessible à l'adresse http://localhost:3000/ dans votre navigateur.
+### L'application devrait maintenant être accessible à l'adresse http://localhost:3000/ dans votre navigateur.
