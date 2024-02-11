@@ -1,5 +1,7 @@
 # Instructions d'installation pour "Stock Wizz"
 
+---
+
 ## Prérequis
 
 - Lien d'installation [NODE](https://nodejs.org/en/download)
