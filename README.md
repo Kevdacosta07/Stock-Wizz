@@ -1,53 +1,49 @@
-Instructions d'installation pour "Stock Wizz"
+# Instructions d'installation pour "Stock Wizz"
 
-Prérequis:
+## Prérequis
 
-Lien d'installation node : https://nodejs.org/en/download
+Lien d'installation [NODE](https://nodejs.org/en/download)
 Lien d'installation GIT : https://git-scm.com/downloads
 
-Assurez-vous d'avoir les éléments suivants installés sur votre système :
+### Assurez-vous d'avoir les éléments suivants installés sur votre système :
     Node.js (vérifiez avec "node -v")
     npm (vérifiez avec "npm -v")
     Git (vérifiez avec "git --version")
 
 
-Étapes d'installation :
+## Étapes d'installation
+### Clonez le dépôt :
+- git clone https://github.com/Kevdacosta07/Stock-Wizz.git
 
-Clonez le dépôt :
-    git clone https://github.com/Kevdacosta07/Stock-Wizz.git
-
-
-Accédez au répertoire du projet :
-    cd Stock-Wizz
+### Accédez au répertoire du projet :
+- cd Stock-Wizz
 
 
-Installation des dépendances côté backend :
-    cd backend
-    npm install
+### Installation des dépendances côté backend :
+1. cd backend 
+2. npm install
 
 
-Installation des dépendances côté frontend :
-    cd ..\frontend\
-    npm install
+### Installation des dépendances côté frontend :
+1. cd ..\frontend\
+2. npm install
 
 
-Configuration du serveur :
-    Modifiez le fichier .env présent dans le dossier avec vos paramètres spécifiques, tels que la configuration de la base de données (Stock-Wizz/backend/.env).
+## Configuration du serveur :
+- Modifiez le fichier .env présent dans le dossier avec vos paramètres spécifiques, tels que la configuration de la base de données (Stock-Wizz/backend/.env).
 
 
-Lancement de l'application :
+## Lancement de l'application
+### Revenez au répertoire dans le dossier backend :
+- cd ..\backend\
+
+### Lancez le serveur Node.js :
+- npm run server
 
 
-Revenez au répertoire dans le dossier backend :
-    cd ..\backend\
-
-Lancez le serveur Node.js :
-    npm run server
+### Lancez l'application client (dans un autre terminal) :
+1. cd ..\frontend\
+2. npm run start
 
 
-Lancez l'application client (dans un autre terminal) :
-    cd ..\frontend\
-    npm run start
-
-
-L'application devrait maintenant être accessible à l'adresse http://localhost:3000/ dans votre navigateur.
+## L'application devrait maintenant être accessible à l'adresse http://localhost:3000/ dans votre navigateur.
