@@ -1,5 +1,5 @@
 # Stock Wizz
-Ce projet a été réalisé dans le cadre d'un projet scolaire visant à 
+Ce projet a été réalisé dans le cadre d'un projet scolaire informatique, visant à renforcer les connaissances avec les technologies React & Node JS ainsi que toutes les librairies compatibles.
 
 
 ## Prérequis
