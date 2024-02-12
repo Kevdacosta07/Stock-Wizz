@@ -65,6 +65,32 @@
   color: white;
 }
 
+/* ERROR */
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.error h1 {
+  font-size: 4em;
+  margin-top: 30px;
+}
+.error p {
+  font-size: 2em;
+}
+.error div {
+  margin-top: 70px;
+}
+.error div a {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.5em;
+}
+
 /* HOME */
 .home {
   display: flex;
@@ -73,22 +99,22 @@
   width: 100vw;
   background: linear-gradient(120deg, #EE1414, #FFC200);
 }
-.home > .HomeText {
+.home .HomeText {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.home > .HomeText h1 {
+.home .HomeText h1 {
   text-align: center;
   font-size: 5em;
   padding: 40px 0 0 0;
   color: white;
 }
-.home > .HomeText > .text {
+.home .HomeText > .text {
   width: 70%;
 }
-.home > .HomeText > .text p {
+.home .HomeText > .text p {
   text-align: center;
   font-size: 1.3em;
   padding: 20px 0;
@@ -1351,6 +1377,7 @@
 .rapports .rapports-container .rapport .image {
   height: 100%;
   width: 10%;
+  margin-right: 20px;
 }
 .rapports .rapports-container .rapport .image img {
   object-fit: contain;

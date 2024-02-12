@@ -5,7 +5,6 @@ const API_URL = '/api/users' //Route vers notre API (backend) (server.js)
 // Register user
 const register = async (userData) => {
     const response = await axios.post(API_URL + "/register", userData)
-
     return response.data
 }
 
@@ -47,8 +46,6 @@ const login = async (userData) => {
 
 const userExist = async (userData) => {
     const response = await axios.post(API_URL + '/checkUser', userData)
-
-    console.log(response.data)
 
     return response.data
 }

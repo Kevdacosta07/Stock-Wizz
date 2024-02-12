@@ -16,9 +16,9 @@ const RemoveStock = () => {
     const { amount } = formData
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {option, isError, isLoading, message, isAmountEditedOption} = useSelector((state) => state.options)
+    const {option, isError, message, isAmountEditedOption} = useSelector((state) => state.options)
     const {isTransactionError, isTransactionLoading, isCreatedTransaction, transactionMessage} = useSelector((state) => state.transactions)
-    const {product} = useSelector((state) => state.products)
+    const {product, isLoading} = useSelector((state) => state.products)
 
     const { id } = useParams()
 
@@ -75,7 +75,7 @@ const RemoveStock = () => {
 
         if (finalamount < 0)
         {
-            toast.error(option.amount + "restant, vous ne pouvez pas en retirer plus")
+            toast.error(option.amount + " restant, vous ne pouvez pas en retirer plus")
             return
         }
 
@@ -94,7 +94,7 @@ const RemoveStock = () => {
         dispatch(addTransaction(transactionData))
     }
 
-    if (isLoading)
+    if (isLoading || isTransactionLoading)
     {
         return <Spinner />
     }

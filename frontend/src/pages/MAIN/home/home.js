@@ -8,6 +8,7 @@ import {FaEnvelope} from "react-icons/fa";
 import Header from "../../../components/header/header";
 import {userExist} from "../../../features/auth/authSlice";
 import {getAllProducts} from "../../../features/products/productSlice";
+import {getAllOptions} from "../../../features/options/optionSlice";
 
 
 const Home = () => {
@@ -16,11 +17,20 @@ const Home = () => {
         email: ''
     })
 
+    const [totalOptionsCount, setTotalOptionsCount] = useState(0);
+
     const { email } = formData
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {isLoading, checkUser, isError, message, users, user} = useSelector((state) => state.auth)
     const {products} = useSelector((state) => state.products)
+    const {options} = useSelector((state) => state.options)
+
+    useEffect(() => {
+        dispatch(getAllUsers())
+        dispatch(getAllProducts())
+        dispatch(getAllOptions())
+    }, [])
 
     useEffect(() => {
 
@@ -42,11 +52,6 @@ const Home = () => {
         dispatch(reset())
     }, [isError, checkUser, message, navigate]);
 
-    useEffect(() => {
-        dispatch(getAllUsers())
-        dispatch(getAllProducts)
-    }, [])
-
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
@@ -65,6 +70,16 @@ const Home = () => {
 
         dispatch(userExist(userData))
     }
+
+    useEffect(() => {
+        let total = 0;
+
+        for (const key in options) {
+            total += options[key].amount * options[key].pack_amount;
+        }
+
+        setTotalOptionsCount(total);
+    }, [options])
 
     if (isLoading)
     {
@@ -103,7 +118,7 @@ const Home = () => {
                         <div className="divider"></div>
 
                         <div className="text">
-                            <h2 className="title">1'400</h2>
+                            <h2 className="title">{options.length < 1 ? (0) : (totalOptionsCount)}</h2>
                             <p className="text">Stock</p>
                         </div>
 

@@ -15,13 +15,12 @@ const Members = () => {
     const {user, users, isLoading, message, isError, isDeletedUser} = useSelector((state) => state.auth)
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [myUser, setMyUser] = useState(user);
 
     const filteredUsers = users.filter((user) =>
         user.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.last_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    const myuser = user
 
     useEffect(() => {
         dispatch(getAllUsers())
@@ -66,12 +65,12 @@ const Members = () => {
 
                 <div className="membersContainer">
                     {filteredUsers.map((user, index) => (
-                        <UserItem user={user} key={index} myuseradmin={myuser.is_admin} />
+                        <UserItem user={user} key={index} myuseradmin={myUser.is_admin} />
                     ))}
                 </div>
 
                 <div className="addmember">
-                    {user.is_admin && <Link to="/membres/add" className="link"><FaPlus className="icon"/>Ajouter un membre</Link>}
+                    {myUser.is_admin && <Link to="/membres/add" className="link"><FaPlus className="icon"/>Ajouter un membre</Link>}
                 </div>
             </div>
         </>

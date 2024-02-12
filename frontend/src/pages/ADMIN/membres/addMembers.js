@@ -61,6 +61,8 @@ const AddMembers = () => {
                 toast.success("Un membre a été créé !")
             }
         }
+
+        dispatch(reset())
     }, [isError, isCreatedUser, isLoading, dispatch, message]);
 
     const onSubmit = (e) => {
@@ -74,8 +76,7 @@ const AddMembers = () => {
         formDataWithImage.append('email', email);
         formDataWithImage.append('password', password);
         formDataWithImage.append('is_admin', is_admin);
-        formDataWithImage.append('profileImage', profileImage); // Ajouter le fichier image
-
+        formDataWithImage.append('profileImage', profileImage);
         dispatch(register(formDataWithImage));
     };
 

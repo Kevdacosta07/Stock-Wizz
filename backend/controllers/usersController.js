@@ -12,9 +12,15 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const createUser = asyncHandler(async (req, res) => {
     const { first_name, last_name, poste, email, password, is_admin } = req.body;
-    const profileImage = req.files.profileImage;
+
+    const profileImage = req.files && req.files.profileImage;
 
     let path
+
+    if (!profileImage)
+    {
+        path = null
+    }
 
     if (profileImage)
     {
