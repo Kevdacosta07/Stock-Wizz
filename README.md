@@ -1,4 +1,5 @@
-# Stock Wizz
+
+Vous pouvez essayer de créer un dossie# Stock Wizz
 Ce projet a été réalisé dans le cadre d'un projet scolaire informatique, visant à renforcer les connaissances avec les technologies React & Node JS ainsi que toutes les librairies compatibles.
 
 
@@ -18,6 +19,7 @@ Ce projet a été réalisé dans le cadre d'un projet scolaire informatique, vis
     git clone https://github.com/Kevdacosta07/Stock-Wizz.git
 
 ### Accédez au répertoire du projet
+Vous pouvez essayer de créer un dossie
     cd Stock-Wizz
 
 
@@ -86,3 +88,7 @@ Si vous souhaitez tester l'application dans son intégralité voici deux comptes
 - react-scripts: 5.0.1
 - react-toastify: 9.1.3
 - web-vitals: 2.1.4
+
+
+## En cas d'erreur
+En cas de problème, veuillez créer un dossier appelé **uploads** dans **frontend/public**

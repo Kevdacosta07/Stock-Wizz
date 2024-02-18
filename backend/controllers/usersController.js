@@ -40,7 +40,7 @@ const createUser = asyncHandler(async (req, res) => {
         return;
     }
 
-    const user = await Users.findOne({ email});
+    const user = await Users.findOne({ email });
 
     if (user) {
         res.status(400).json({ message: "Un utilisateur avec le même email existe déjà !" });

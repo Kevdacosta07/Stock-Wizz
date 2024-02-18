@@ -18,6 +18,7 @@ const AddMembers = () => {
     })
 
     const { first_name, last_name,  poste, email, password, is_admin, profileImage} = formData
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {user, isError, isCreatedUser, isLoading, message} = useSelector((state) => state.auth)

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
-import {addProduct, getSpecificProduct, resetProducts, updateProduct} from "../../../features/products/productSlice";
+import {getSpecificProduct, resetProducts, updateProduct} from "../../../features/products/productSlice";
 
 const EditProduct = () => {
     const [formData, setFormData] = useState({
